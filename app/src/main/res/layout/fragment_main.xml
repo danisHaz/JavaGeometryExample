@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    android:gravity="center|top"
+    android:orientation="vertical">
+
+    <com.example.geometry.utils.GeometryCanvas
+        android:id="@+id/geometry"
+        android:layout_width="match_parent"
+        android:layout_height="350dp" />
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/addFigure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/main_button_minWidth"
+                android:text="Add figure" />
+
+            <Button
+                android:id="@+id/saveAsImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/main_button_minWidth"
+                android:text="Save as image" />
+
+            <Button
+                android:id="@+id/saveToFile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/main_button_minWidth"
+                android:text="Save to file" />
+
+            <Button
+                android:id="@+id/computeS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/main_button_minWidth"
+                android:text="Compute square" />
+
+            <Button
+                android:id="@+id/dragFigure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/main_button_minWidth"
+                android:text="Drag figure" />
+
+            <Button
+                android:id="@+id/addToDB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/main_button_minWidth"
+                android:text="Add to DB" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/removeFigure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/main_button_minWidth"
+                android:text="Remove figure" />
+
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/main_button_minWidth"
+                android:text="Clear" />
+
+            <Button
+                android:id="@+id/uploadFromFile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/main_button_minWidth"
+                android:text="Upload from file" />
+
+            <Button
+                android:id="@+id/computeP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/main_button_minWidth"
+                android:text="Compute perimetr" />
+
+            <Button
+                android:id="@+id/checkIfCross"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/main_button_minWidth"
+                android:text="Check if cross" />
+
+            <Button
+                android:id="@+id/retrieveFromDB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/main_button_minWidth"
+                android:text="Retrieve from DB" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/resultField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/purple_500"
+        android:visibility="invisible"
+        tools:text="kek" />
+
+</LinearLayout>

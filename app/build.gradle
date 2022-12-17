@@ -1,0 +1,45 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.example.geometry"
+        minSdk 28
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+    implementation project(":common-utils")
+
+    implementation libs("lifecycle-compiler")
+    implementation libs("viewmodel")
+    implementation libs("core-ktx")
+    implementation libs("appcompat")
+    implementation libs("material")
+    implementation libs("constraintlayout")
+    implementation libs("lifecycle-runtime")
+    implementation libs("fragment-ktx")
+
+    testImplementation libs("junit")
+    androidTestImplementation libs("junit-ext")
+    androidTestImplementation libs("espresso")
+}

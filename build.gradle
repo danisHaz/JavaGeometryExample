@@ -1,0 +1,113 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "io.realm:realm-gradle-plugin:10.13.0"
+    }
+}
+
+plugins {
+    id 'com.android.application' version '7.2.2' apply false
+    id 'com.android.library' version '7.2.2' apply false
+}
+
+ext {
+    versions = [
+            material_version          : "1.6.1",
+            dataStore                 : "1.0.0-rc01",
+            lifecycle_ver             : "2.4.0-rc01",
+            fragment                  : "1.4.0-alpha04",
+            gson_version              : "2.8.8",
+            retrofit2_version         : "2.9.0",
+            room_version              : "2.3.0",
+            hilt_version              : "2.38.1",
+            okhttp_version            : "3.14.6",
+            adapter_delegate          : "4.3.2",
+            core_ktx_version          : "1.7.0",
+            appcompat_version         : "1.3.1",
+            constraintlayout_version  : "2.1.4",
+            junit_version             : "4.13.2",
+            junit_ext_version         : "1.1.3",
+            espresso_core_version     : "3.4.0",
+            swiperefreshlayout_version: "1.1.0",
+            mongo_driver_version      : "4.1.2",
+            awt_version               : "1.0.0",
+            lombok_version            : "1.18.4",
+            smack_version             : "4.4.6",
+            realm_version             : "10.13.0",
+    ]
+}
+
+def libs(libname) {
+    switch (libname) {
+        case "material":
+            return "com.google.android.material:material:${versions.material_version}"
+        case "core-ktx":
+            return "androidx.core:core-ktx:${versions.core_ctx_version}"
+        case "appcompat":
+            return "androidx.appcompat:appcompat:${versions.appcompat_version}"
+        case "constraintlayout":
+            return "androidx.constraintlayout:constraintlayout:${versions.constraintlayout_version}"
+        case "junit":
+            return "junit:junit:${versions.junit_version}"
+        case "junit-ext":
+            return "androidx.test.ext:junit:${versions.junit_ext_version}"
+        case "espresso":
+            return "androidx.test.espresso:espresso-core:${versions.espresso_version}"
+        case "swiperefreshlayout":
+            return "androidx.swiperefreshlayout:swiperefreshlayout:${versions.swiperefreshlayout_version}"
+        case "datastore":
+            return "androidx.datastore:datastore-preferences:${versions.dataStore}"
+        case "lifecycle-runtime":
+            return "androidx.lifecycle:lifecycle-runtime:${versions.lifecycle_ver}"
+        case "lifecycle-compiler":
+            return "androidx.lifecycle:lifecycle-compiler:${versions.lifecycle_ver}"
+        case "fragment-ktx":
+            return "androidx.fragment:fragment-ktx:${versions.fragment}"
+        case "viewmodel":
+            return "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle_ver}"
+        case "gson":
+            return "com.google.code.gson:gson:${versions.gson_version}"
+        case "retrofit":
+            return "com.squareup.retrofit2:retrofit:${versions.retrofit2_version}"
+        case "retrofit-converter":
+            return "com.squareup.retrofit2:converter-gson:${versions.retrofit2_version}"
+        case "room":
+            return "androidx.room:room-runtime:${versions.room_version}"
+        case "room-compiler":
+            return "androidx.room:room-compiler:${versions.room_version}"
+        case "room-ktx":
+            return "androidx.room:room-ktx:${versions.room_version}"
+        case "dagger":
+            return "com.google.dagger:hilt-android:${versions.hilt_version}"
+        case "hilt":
+            return "com.google.dagger:hilt-compiler:${versions.hilt_version}"
+        case "okhttp3":
+            return "com.squareup.okhttp3:okhttp:${versions.okhttp_version}"
+        case "adapterdelegate":
+            return "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:${versions.adapter_delegate}"
+        case "mongodb":
+            return "org.mongodb:mongodb-driver-sync:${versions.mongo_driver_version}"
+        case "awt":
+            return "clojure-interop:java.awt:${versions.awt_version}"
+        case "lombok":
+            return "org.projectlombok:lombok:${versions.lombok_version}"
+        case "smack-android":
+            return "org.igniterealtime.smack:smack-android-extensions:${versions.smack_version}"
+        case "smack-experimental":
+            return "org.igniterealtime.smack:smack-experimental:${versions.smack_version}"
+        case "smack-tcp":
+            return "org.igniterealtime.smack:smack-tcp:${versions.smack_version}"
+        case "realm":
+            return "io.realm:realm-gradle-plugin:${versions.realm_version}"
+        default:
+            throw new IllegalArgumentException("No mapping exists for name: $name.")
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

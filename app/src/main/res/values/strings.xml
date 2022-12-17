@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">JavaGeometryExample</string>
+    <string-array name="shape_types">
+        <item>Circle</item>
+        <item>Segment</item>
+        <item>TGon</item>
+        <item>NGon</item>
+        <item>QGon</item>
+        <item>Trapeze</item>
+        <item>Rectangle</item>
+        <item>Polyline</item>
+    </string-array>
+    <string-array name="number_of_vertices">
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="drag_types">
+        <item>Rot</item>
+        <item>SymAxis</item>
+        <item>Shift</item>
+    </string-array>
+    <string-array name="axis_numbers">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+</resources>
