@@ -100,8 +100,6 @@ public class MainFragment extends Fragment {
         canvas = view.findViewById(R.id.geometry);
         answer = view.findViewById(R.id.resultField);
 
-        Log.e("answer", Integer.toString(DataStorage.answerVisibilityState));
-        Log.e("answer", DataStorage.answerValue);
         answer.setVisibility(DataStorage.answerVisibilityState);
         answer.setText(DataStorage.answerValue);
 
@@ -188,8 +186,6 @@ public class MainFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        Log.d("nice", "ass");
 
         DataStorage.answerValue = Double.toString(res);
         DataStorage.answerVisibilityState = View.VISIBLE;

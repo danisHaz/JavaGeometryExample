@@ -1,7 +1,6 @@
 package com.example.geometry.views;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,7 +70,6 @@ public class CountFragment extends Fragment {
     private void onCount(View view) {
         for (int i = 0; i < currentFigures.size(); i++) {
             if (currentFigures.get(i).equals(type.getSelectedItem())) {
-                Log.d("so many", "keks");
                 callback.handleEvent(new CountData(i, countType));
                 onCancel(view);
                 return;
