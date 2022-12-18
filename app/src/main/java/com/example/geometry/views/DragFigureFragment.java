@@ -85,9 +85,9 @@ public class DragFigureFragment extends Fragment {
 
     private void setTextFields() {
         xField.setSingleLine();
-        xField.setInputType(InputType.TYPE_CLASS_NUMBER);
+        xField.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_CLASS_NUMBER);
         yField.setSingleLine();
-        yField.setInputType(InputType.TYPE_CLASS_NUMBER);
+        yField.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_CLASS_NUMBER);
     }
 
     private void onCancel(View view) {

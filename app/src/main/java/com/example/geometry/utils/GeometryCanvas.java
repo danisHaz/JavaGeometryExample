@@ -34,6 +34,7 @@ public class GeometryCanvas extends View {
         redList = new ArrayList<>();
         paint = new Paint();
         paint.setColor(Color.GRAY);
+        paint.setStyle(Paint.Style.STROKE);
     }
 
     public GeometryCanvas(Context context) {
