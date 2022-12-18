@@ -57,9 +57,6 @@ public class MainFragment extends Fragment {
     private static final String fileName = "./src/main/java/ui/figures.txt";
     private static final String pngFilePath = "./src/main/java/ui/snapshot.png";
 
-    public List<IShape> list = new ArrayList<>();
-    public List<String> types = new ArrayList<>();
-
     private Button addFigure = null;
     private Button removeFigure = null;
     private Button saveAsImg = null;
@@ -102,6 +99,11 @@ public class MainFragment extends Fragment {
 
         canvas = view.findViewById(R.id.geometry);
         answer = view.findViewById(R.id.resultField);
+
+        Log.e("answer", Integer.toString(DataStorage.answerVisibilityState));
+        Log.e("answer", DataStorage.answerValue);
+        answer.setVisibility(DataStorage.answerVisibilityState);
+        answer.setText(DataStorage.answerValue);
 
         addFigure = view.findViewById(R.id.addFigure);
         addFigure.setOnClickListener(this::onAddFigure);
@@ -176,20 +178,21 @@ public class MainFragment extends Fragment {
     public void countByPos(CountData data) {
         int pos = data.getFirst();
         boolean type = data.getType();
-        canvas.addToListAndDraw(list.get(pos), false);
 
-        answer.setVisibility(View.VISIBLE);
         double res = 0.0;
         try {
             if (type)
-                res = list.get(pos).length();
+                res = canvas.getList().get(pos).length();
             else
-                res = list.get(pos).square();
+                res = canvas.getList().get(pos).square();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        answer.setText(String.valueOf(res));
+        Log.d("nice", "ass");
+
+        DataStorage.answerValue = Double.toString(res);
+        DataStorage.answerVisibilityState = View.VISIBLE;
     }
 
     // callback func
@@ -197,15 +200,18 @@ public class MainFragment extends Fragment {
         int firstPosition = data.getFirst();
         int secondPosition = data.getSecond();
 
+        String isCross = null;
         try {
-            answer.setVisibility(View.VISIBLE);
             if (canvas.getList().get(firstPosition).cross(canvas.getList().get(secondPosition)))
-                answer.setText("Cross");
+                isCross = "Cross";
             else
-                answer.setText("Not Cross");
+                isCross = "Not Cross";
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        DataStorage.answerValue = isCross;
+        DataStorage.answerVisibilityState = View.VISIBLE;
     }
 
     // callback func
@@ -213,6 +219,8 @@ public class MainFragment extends Fragment {
         int pos = data.getPosition();
         canvas.remove(pos);
         canvas.clearAndDrawAll(null, false);
+
+        DataStorage.answerVisibilityState = View.INVISIBLE;
     }
 
     public void readFromDocument(Uri uri) {
@@ -229,7 +237,6 @@ public class MainFragment extends Fragment {
             String line;
             int lineInd = 0;
             while ((line = br.readLine()) != null) {
-                Log.e("data", line);
                 IShape restoredShape = IFigureFactory.create(line);
                 if (restoredShape != null) {
                     canvas.addToListAndDraw(restoredShape, true);
@@ -247,6 +254,7 @@ public class MainFragment extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        DataStorage.answerVisibilityState = View.INVISIBLE;
     }
 
     public void writeToDocument(Uri uri) {
@@ -264,6 +272,8 @@ public class MainFragment extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        DataStorage.answerVisibilityState = View.INVISIBLE;
     }
 
     public void addCircle(double[] coords) throws Exception {
@@ -362,6 +372,7 @@ public class MainFragment extends Fragment {
                 addPolyline(coords);
                 break;
         }
+
     }
 
     private void onAddFigure(View view) {
@@ -405,6 +416,8 @@ public class MainFragment extends Fragment {
             values.put(MediaStore.Images.Media.IS_PENDING, false);
             getContext().getContentResolver().update(uri, values, null, null);
         }
+
+        DataStorage.answerVisibilityState = View.INVISIBLE;
     }
 
     private ContentValues contentValues() {
@@ -529,5 +542,10 @@ public class MainFragment extends Fragment {
         uploadFromFile = null;
         checkIfCross = null;
         super.onDestroyView();
+    }
+
+    private static final class DataStorage {
+        public static int answerVisibilityState = View.INVISIBLE;
+        public static String answerValue = "";
     }
 }
