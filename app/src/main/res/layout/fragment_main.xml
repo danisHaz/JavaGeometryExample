@@ -126,7 +126,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textColor="@color/purple_500"
-        android:visibility="invisible"
+        android:visibility="visible"
         tools:text="kek" />
 
 </LinearLayout>

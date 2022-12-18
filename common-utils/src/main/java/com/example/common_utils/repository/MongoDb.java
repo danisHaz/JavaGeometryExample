@@ -16,26 +16,29 @@ import io.realm.Realm;
 import io.realm.mongodb.App;
 import io.realm.mongodb.AppConfiguration;
 import io.realm.mongodb.Credentials;
+import io.realm.mongodb.RealmResultTask;
 import io.realm.mongodb.User;
 import io.realm.mongodb.mongo.MongoClient;
 import io.realm.mongodb.mongo.MongoCollection;
 import io.realm.mongodb.mongo.MongoDatabase;
+import io.realm.mongodb.mongo.iterable.MongoCursor;
+import io.realm.mongodb.mongo.result.InsertOneResult;
 
 public final class MongoDb {
 
     private static final String geometryDBname = "Geometry";
-	private static final String geometryCollectionName = "Figures";
-	private static final String geometryClusterName = "mongodb-atlas";
+    private static final String geometryCollectionName = "Figures";
+    private static final String geometryClusterName = "mongodb-atlas";
     private static final String appId = "javageometryexample-rnwzp";
 
     private static MongoDb inst = null;
     private MongoDatabase database;
     private MongoCollection<Document> collection;
 
-    private MongoDb() {}
+    private MongoDb() {
+    }
 
-    public static void connectDB(Context context)
-    {
+    public static void connectDB(Context context) {
         Realm.init(context);
 
         AppConfiguration appConfiguration = new AppConfiguration.Builder(appId)
@@ -67,7 +70,7 @@ public final class MongoDb {
     public static MongoDb create() throws IllegalStateException {
         if (inst == null) {
             Object obj = new Object();
-            synchronized(obj) {
+            synchronized (obj) {
                 if (inst == null)
                     inst = new MongoDb();
             }
@@ -83,13 +86,17 @@ public final class MongoDb {
 
     public void addToDatabase(List<IShape> list, String collectionName) {
         Thread thread = new Thread(() -> {
-            collection.deleteMany(new Document());
+//            collection.deleteMany(new Document());
 
-            list.forEach((shape) -> {
-                collection.insertOne(shape.toBson());
-            });
+            try {
+                list.forEach((shape) -> {
+                    RealmResultTask<InsertOneResult> task = collection.insertOne(shape.toBson());
+                    Log.e("inserted id: ", task.get().getInsertedId().toString());
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-            Log.e("mongodb", String.valueOf(list.size()));
         });
 
         thread.start();
@@ -98,20 +105,24 @@ public final class MongoDb {
     public void retrieveFromDatabase(MongoCallbackHandler<List<IShape>> handler) {
         Thread thread = new Thread(() -> {
             List<IShape> list = new ArrayList<>();
-            collection.find().iterator().get().forEachRemaining((document) -> {
-                Object data = document.get("data");
-                if (data instanceof String) {
-                    String buildString = (String) data;
-                    IShape restoredShape = IFigureFactory.create(buildString);
-                    if (restoredShape != null) {
-                        list.add(restoredShape);
-                    } else {
-                        Log.e("MongoDb", "Data is invalid");
+            try {
+                collection.find().iterator().get().forEachRemaining((document) -> {
+                    Object data = document.get("data");
+                    if (data instanceof String) {
+                        String buildString = (String) data;
+                        IShape restoredShape = IFigureFactory.create(buildString);
+                        if (restoredShape != null) {
+                            list.add(restoredShape);
+                        } else {
+                            Log.e("MongoDb", "Data is invalid");
+                        }
                     }
-                }
-            });
+                });
 
-            handler.handle(list);
+                handler.handle(list);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
         thread.start();
     }

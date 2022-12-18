@@ -78,7 +78,7 @@ public class Circle implements IShape {
 	public Document toBson() {
 		Document circle = new Document("type", type)
 			.append("data", toString());
-		
+
 		return circle;
 	}
 	

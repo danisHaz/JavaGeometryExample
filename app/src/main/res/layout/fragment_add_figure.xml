@@ -62,6 +62,8 @@
                 android:id="@+id/x1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:inputType="number"
                 android:text="0"
                 android:visibility="invisible" />
 
@@ -69,6 +71,8 @@
                 android:id="@+id/x2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:inputType="number"
                 android:text="0"
                 android:visibility="invisible" />
 
@@ -76,6 +80,8 @@
                 android:id="@+id/x3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:inputType="number"
                 android:text="0"
                 android:visibility="invisible" />
 
@@ -90,6 +96,8 @@
                 android:id="@+id/x5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:inputType="number"
                 android:text="0"
                 android:visibility="invisible" />
         </LinearLayout>
@@ -107,6 +115,8 @@
                 android:id="@+id/y1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:inputType="number"
                 android:text="0"
                 android:visibility="invisible" />
 
@@ -114,6 +124,8 @@
                 android:id="@+id/y2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:inputType="number"
                 android:text="0"
                 android:visibility="invisible" />
 
@@ -121,6 +133,8 @@
                 android:id="@+id/y3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:inputType="number"
                 android:text="0"
                 android:visibility="invisible" />
 
@@ -128,6 +142,8 @@
                 android:id="@+id/y4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:inputType="number"
                 android:text="0"
                 android:visibility="invisible" />
 
@@ -135,6 +151,8 @@
                 android:id="@+id/y5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:inputType="number"
                 android:text="0"
                 android:visibility="invisible" />
         </LinearLayout>

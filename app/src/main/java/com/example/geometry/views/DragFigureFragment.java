@@ -1,6 +1,7 @@
 package com.example.geometry.views;
 
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,6 +80,14 @@ public class DragFigureFragment extends Fragment {
         setDataToTypes();
         setDataToCombo();
         setAxisSpinner();
+        setTextFields();
+    }
+
+    private void setTextFields() {
+        xField.setSingleLine();
+        xField.setInputType(InputType.TYPE_CLASS_NUMBER);
+        yField.setSingleLine();
+        yField.setInputType(InputType.TYPE_CLASS_NUMBER);
     }
 
     private void onCancel(View view) {
