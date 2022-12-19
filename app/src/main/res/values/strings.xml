@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">JavaGeometryExample</string>
     <string-array name="shape_types">
+        <item>TGon</item>
         <item>Circle</item>
         <item>Segment</item>
-        <item>TGon</item>
         <item>NGon</item>
         <item>QGon</item>
         <item>Trapeze</item>
